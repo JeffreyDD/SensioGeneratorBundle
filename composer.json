@@ -1,11 +1,14 @@
 {
     "name": "sensio/generator-bundle",
-    "description": "This bundle generates code for you",
+    "description": "This bundle generates code for you where you want it",
     "keywords": [],
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
         {
+            "name": "Jeffrey den Drijver",
+            "email": "jeffrey@d-n-a-events.nl"
+        },{
             "name": "Fabien Potencier",
             "email": "fabien@symfony.com"
         }
