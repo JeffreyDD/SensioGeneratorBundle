@@ -39,7 +39,7 @@ class GenerateDoctrineCrudCommand extends GenerateDoctrineCommand
         $this
             ->setDefinition(array(
                 new InputOption('entity', '', InputOption::VALUE_REQUIRED, 'The entity class name to initialize (shortcut notation)'),
-                new InputOption('bundle', '', InputOption::VALUE_OPTIONAL, 'The bundle name to create generate to'),
+                new InputOption('bundle', '', InputOption::VALUE_REQUIRED, 'The bundle name to create generate to'),
                 new InputOption('route-prefix', '', InputOption::VALUE_REQUIRED, 'The route prefix'),
                 new InputOption('with-write', '', InputOption::VALUE_NONE, 'Whether or not to generate create, new and delete actions'),
                 new InputOption('format', '', InputOption::VALUE_REQUIRED, 'Use the format for configuration files (php, xml, yml, or annotation)', 'annotation'),
@@ -137,6 +137,11 @@ EOT
         $entity = $dialog->askAndValidate($output, $dialog->getQuestion('The Entity shortcut name', $input->getOption('entity')), array('Sensio\Bundle\GeneratorBundle\Command\Validators', 'validateEntityName'), false, $input->getOption('entity'));
         $input->setOption('entity', $entity);
         list($bundle, $entity) = $this->parseShortcutNotation($entity);
+
+        if ($input->getOption('bundle')) {
+            $bundle = Validators::validateBundleName($input->getOption('bundle'));
+        }
+        $input->setOption('bundle', $bundle);
 
         // Entity exists?
         $entityClass = $this->getContainer()->get('doctrine')->getEntityNamespace($bundle).'\\'.$entity;
