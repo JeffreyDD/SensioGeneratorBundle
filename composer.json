@@ -1,5 +1,5 @@
 {
-    "name": "sensio/generator-bundle",
+    "name": "jeffreydd/generator-bundle",
     "description": "This bundle generates code for you where you want it",
     "keywords": [],
     "type": "symfony-bundle",
